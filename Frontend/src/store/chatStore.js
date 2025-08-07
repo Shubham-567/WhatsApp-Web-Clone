@@ -1,6 +1,5 @@
 import { create } from "zustand";
 import API from "../services/api.js";
-import { sendMessage } from "../../../Backend/controllers/messageController";
 
 const useChatStore = create((set) => ({
   chats: [],
@@ -24,8 +23,9 @@ const useChatStore = create((set) => ({
     set({ loading: true });
 
     try {
-      const res = await API.get(`/messages/${wa_id}`);
-      set({ messages: res.data, activeChat: wa_id, loading: false });
+      set({ activeChat: wa_id });
+      const res = await API.get(`/message/${wa_id}`);
+      set({ messages: res.data, loading: false });
     } catch (error) {
       console.error("Failed to fetch messages ", error.message);
       set({ loading: false });
@@ -52,3 +52,5 @@ const useChatStore = create((set) => ({
     }
   },
 }));
+
+export default useChatStore;

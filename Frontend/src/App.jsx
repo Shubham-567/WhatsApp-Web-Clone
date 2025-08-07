@@ -1,21 +1,7 @@
-import { useEffect } from "react";
-import API from "./services/api";
-
-const fetchChats = async () => {
-  const res = await API.get("/conversations");
-  console.log(res.data);
-};
+import Home from "./pages/Home";
 
 function App() {
-  useEffect(() => {
-    fetchChats();
-  }, []);
-
-  return (
-    <div className='text-center text-5xl font-bold mt-20 text-txt-secondary'>
-      Testing..
-    </div>
-  );
+  return <Home />;
 }
 
 export default App;
