@@ -1,5 +1,65 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
 @import "tailwindcss";
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* Colors */
+  --primary: hsl(194, 66%, 55%);
+  /* --secondary: hsl(194, 66%, 65%); */
+
+  --bg-dark: hsl(217, 34%, 10%);
+  --bg: hsl(217, 34%, 15%);
+  --bg-light: hsl(217, 34%, 20%);
+  --txt-primary: hsl(218, 100%, 95%);
+  --txt-muted: hsl(218, 10%, 65%);
+
+  --highlight: hsl(183 9% 37%);
+  --border: hsl(183 12% 27%);
+  --border-muted: hsl(183 19% 16%);
+}
+
+@theme {
+  --text-2xs: 0.6rem;
+
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+
+  --color-bg-dark: var(--bg-dark);
+  --color-bg: var(--bg);
+  --color-bg-light: var(--bg-light);
+  
+  --color-txt-primary: var(--txt-primary);
+  --color-txt-muted: var(--txt-muted);
+
+  --color-highlight: var(--highlight);
+  --color-border: var(--border);
+  --color-border-muted: var(--chat-border-muted);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--bg-dark);
+    color: var(--txt-primary);
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-size: 1rem; /* 16px */
+    overflow-x: hidden;
+    @apply selection:bg-primary selection:text-txt-primary;
+  }
+}
+
+@layer components {
+  .flex-center {
+    @apply flex items-center gap-4;
+  }
+  .flex-xy-center {
+    @apply flex justify-center items-center gap-4;
+  }
+  .flex-between-center {
+    @apply flex justify-between items-center gap-4;
+  }
 }
