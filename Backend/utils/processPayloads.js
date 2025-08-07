@@ -17,22 +17,24 @@ const processPayloadFile = async (filePath) => {
   const value = change?.value;
 
   // handle incoming messages
-  if (value?.message && value?.contacts) {
+  if (value?.messages && value?.contacts) {
     const contact = value?.contacts?.[0];
     const message = value?.messages?.[0];
+
+    // console.log(message);
 
     if (contact && message) {
       const msgData = {
         wa_id: contact.wa_id,
         name: contact.profile.name,
         message: message.text.body || "",
-        direction: "incoming",
+        direction: message.from === contact.wa_id ? "incoming" : "outgoing",
         timestamp: new Date(parseInt(message.timestamp) * 1000),
         meta_msg_id: message.id,
         status: null,
       };
 
-      //   console.log(msgData);
+        console.log("Saving incoming message: ", msgData);
 
       await Message.updateOne(
         { meta_msg_id: message.id },
@@ -52,10 +54,10 @@ const processPayloadFile = async (filePath) => {
         timestamp: new Date(parseInt(status.timestamp) * 1000),
       };
 
-      console.log(
-        `Updating status for msg ID ${status.meta_msg_id}: `,
-        updatedStatus.status
-      );
+        console.log(
+          `Updating status for msg ID ${status.meta_msg_id}: `,
+          updatedStatus.status
+        );
 
       await Message.updateOne(
         { meta_msg_id: status.meta_msg_id },
