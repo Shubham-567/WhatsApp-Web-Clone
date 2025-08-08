@@ -11,6 +11,7 @@ function Sidebar() {
     fetchMessages,
     isSidebarOpen,
     setActiveChat,
+    chatsLoading,
   } = useChatStore();
 
   // console.log(chats);
@@ -37,18 +38,24 @@ function Sidebar() {
       </div>
 
       <ul className='flex flex-col gap-1'>
-        {chats.map((chat) => (
-          <li key={chat._id}>
-            <ChatListItem
-              chat={chat}
-              isActive={activeChat === chat._id}
-              onClick={() => {
-                fetchMessages(chat._id);
-                setActiveChat(chat._id);
-              }}
-            />
-          </li>
-        ))}
+        {chatsLoading ? (
+          <p className='text-center text-txt-muted mt-4'>
+            Loading chats please wait...
+          </p>
+        ) : (
+          chats.map((chat) => (
+            <li key={chat._id}>
+              <ChatListItem
+                chat={chat}
+                isActive={activeChat === chat._id}
+                onClick={() => {
+                  fetchMessages(chat._id);
+                  setActiveChat(chat._id);
+                }}
+              />
+            </li>
+          ))
+        )}
       </ul>
     </div>
   );

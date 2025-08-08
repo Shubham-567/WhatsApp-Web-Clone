@@ -12,6 +12,7 @@ function ChatWindow() {
     toggleSidebar,
     isSidebarOpen,
     setActiveChat,
+    messageLoading,
   } = useChatStore();
   const [text, setText] = useState("");
 
@@ -77,7 +78,11 @@ function ChatWindow() {
 
       {/* Messages */}
       <div className='flex-1 p-4 overflow-y-auto'>
-        {messages.length === 0 ? (
+        {messageLoading ? (
+          <p className='text-center text-txt-muted mt-4'>
+            Loading messages please wait...
+          </p>
+        ) : messages.length === 0 ? (
           <p className='text-txt-muted'>No messages yet.</p>
         ) : (
           <MessageBubble messages={messages} />

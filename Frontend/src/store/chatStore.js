@@ -5,7 +5,8 @@ const useChatStore = create((set) => ({
   chats: [],
   messages: [],
   activeChat: null,
-  loading: false,
+  chatsLoading: false,
+  messageLoading: false,
   isSidebarOpen: true,
 
   setActiveChat: (id) => {
@@ -20,27 +21,27 @@ const useChatStore = create((set) => ({
   },
 
   fetchChats: async () => {
-    set({ loading: true });
+    set({ chatsLoading: true });
 
     try {
       const res = await API.get("/conversations");
-      set({ chats: res.data, loading: false });
+      set({ chats: res.data, chatsLoading: false });
     } catch (error) {
       console.error("Failed to fetch chats ", error.message);
-      set({ loading: false });
+      set({ chatsLoading: false });
     }
   },
 
   fetchMessages: async (wa_id) => {
-    set({ loading: true });
+    set({ messageLoading: true });
 
     try {
       set({ activeChat: wa_id });
       const res = await API.get(`/message/${wa_id}`);
-      set({ messages: res.data, loading: false });
+      set({ messages: res.data, messageLoading: false });
     } catch (error) {
       console.error("Failed to fetch messages ", error.message);
-      set({ loading: false });
+      set({ messageLoading: false });
     }
   },
 
