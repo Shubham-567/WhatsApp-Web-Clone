@@ -10,7 +10,7 @@ function ChatListItem({ chat, onClick, isActive }) {
       <img
         src='https://avatar.iran.liara.run/public'
         alt='profile image'
-        className='size-12 rounded-full'
+        className='size-12 rounded-full bg-bg-light'
       />
       <div className='text-sm space-y-1.5'>
         <p className='font-semibold flex-between'>

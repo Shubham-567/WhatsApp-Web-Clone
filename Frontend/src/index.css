@@ -8,10 +8,10 @@
   /* --secondary: hsl(194, 66%, 65%); */
 
   --bg-dark: hsl(217, 34%, 10%);
-  --bg: hsl(217, 34%, 15%);
-  --bg-light: hsl(217, 34%, 20%);
+  --bg: hsl(217, 34%, 14%);
+  --bg-light: hsl(217, 34%, 18%);
   --txt-primary: hsl(218, 100%, 95%);
-  --txt-muted: hsl(218, 10%, 55%);
+  --txt-muted: hsl(218, 10%, 60%);
 
   --highlight: hsl(353, 9%, 37%);
   --border: hsl(180, 15%, 15%);
