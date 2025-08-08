@@ -67,10 +67,14 @@ function ChatWindow() {
         </div>
 
         <div className='flex-center gap-2'>
-          <div className='icon-container'>
+          <div
+            className='icon-container'
+            onClick={() => alert("You clicked call button")}>
             <Phone className='size-6 hover:text-primary' />
           </div>
-          <div className='icon-container'>
+          <div
+            className='icon-container'
+            onClick={() => alert("You clicked video call button")}>
             <Video className='size-6 hover:text-primary' />
           </div>
         </div>
@@ -91,7 +95,9 @@ function ChatWindow() {
 
       {/*Chat inputs*/}
       <div className='flex-between gap-2 px-4 py-2 border-t border-border bg-bg/40'>
-        <div className='icon-container'>
+        <div
+          className='icon-container'
+          onClick={() => alert("You clicked add attachment button")}>
           <Paperclip className='size-6 hover:text-primary' />
         </div>
 

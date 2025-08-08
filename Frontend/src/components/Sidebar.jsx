@@ -23,7 +23,9 @@ function Sidebar() {
     <div className={`sidebar ${!isSidebarOpen ? "hidden" : "block"} md:block`}>
       <div className='flex-between'>
         <span className='font-bold text-2xl'>My Chats</span>
-        <div className='icon-container'>
+        <div
+          className='icon-container'
+          onClick={() => alert("You clicked add chat button")}>
           <Plus className='size-6 hover:text-primary' />
         </div>
       </div>
