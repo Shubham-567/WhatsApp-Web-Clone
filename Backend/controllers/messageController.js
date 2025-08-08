@@ -5,14 +5,21 @@ export const getAllConversations = async (req, res) => {
   try {
     const conversations = await Message.aggregate([
       {
-        $sort: { timestamp: -1 },
+        $sort: { timestamp: 1 },
       },
       {
         $group: {
           _id: "$wa_id",
-          name: { $first: "$name" },
-          lastMessage: { $first: "$message" },
-          lastTimestamp: { $first: "$timestamp" },
+          contact: { $first: "$name" },
+          allMessages: { $push: "$$ROOT" },
+        },
+      },
+      {
+        $project: {
+          contact: 1,
+          lastMessage: { $last: "$allMessages.message" },
+          lastTimestamp: { $last: "$allMessages.timestamp" },
+          lastSender: { $last: "$allMessages.name" },
         },
       },
       {
