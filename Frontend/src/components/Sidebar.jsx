@@ -4,7 +4,14 @@ import useChatStore from "../store/chatStore";
 import { Plus, Search } from "lucide-react";
 
 function Sidebar() {
-  const { chats, activeChat, fetchChats, fetchMessages } = useChatStore();
+  const {
+    chats,
+    activeChat,
+    fetchChats,
+    fetchMessages,
+    isSidebarOpen,
+    setActiveChat,
+  } = useChatStore();
 
   // console.log(chats);
 
@@ -12,7 +19,7 @@ function Sidebar() {
     fetchChats();
   }, []);
   return (
-    <div className='sidebar'>
+    <div className={`sidebar ${!isSidebarOpen ? "hidden" : "block"} md:block`}>
       <div className='flex-between'>
         <span className='font-bold text-2xl'>My Chats</span>
         <div className='icon-container'>
@@ -35,7 +42,10 @@ function Sidebar() {
             <ChatListItem
               chat={chat}
               isActive={activeChat === chat._id}
-              onClick={() => fetchMessages(chat._id)}
+              onClick={() => {
+                fetchMessages(chat._id);
+                setActiveChat(chat._id);
+              }}
             />
           </li>
         ))}

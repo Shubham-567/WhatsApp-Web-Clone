@@ -6,6 +6,18 @@ const useChatStore = create((set) => ({
   messages: [],
   activeChat: null,
   loading: false,
+  isSidebarOpen: true,
+
+  setActiveChat: (id) => {
+    set({
+      activeChat: id,
+      isSidebarOpen: false,
+    });
+  },
+
+  toggleSidebar: (value) => {
+    set({ isSidebarOpen: value });
+  },
 
   fetchChats: async () => {
     set({ loading: true });
@@ -47,6 +59,9 @@ const useChatStore = create((set) => ({
       set((state) => ({
         messages: [...state.messages, res.data],
       }));
+
+      // Refetch sidebar chats so it has latest message
+      await useChatStore.getState().fetchChats();
     } catch (error) {
       console.error("Failed to send message", error.message);
     }

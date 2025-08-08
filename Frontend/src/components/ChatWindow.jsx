@@ -4,7 +4,15 @@ import MessageBubble from "./MessageBubble.jsx";
 import { useState } from "react";
 
 function ChatWindow() {
-  const { activeChat, messages, chats, sendMessage } = useChatStore();
+  const {
+    activeChat,
+    messages,
+    chats,
+    sendMessage,
+    toggleSidebar,
+    isSidebarOpen,
+    setActiveChat,
+  } = useChatStore();
   const [text, setText] = useState("");
 
   const contact = chats.find((c) => c._id === activeChat);
@@ -14,9 +22,6 @@ function ChatWindow() {
       return;
     }
 
-    // console.log(activeChat);
-    // console.log(text);
-
     sendMessage(activeChat, text);
     setText("");
 
@@ -25,26 +30,34 @@ function ChatWindow() {
 
   if (!activeChat) {
     return (
-      <div className='flex-1 flex items-center justify-center text-txt-muted text-xl'>
+      <div className='max-md:hidden flex-1 flex items-center justify-center text-txt-muted text-xl'>
         Select a chat to start messaging
       </div>
     );
   }
 
   return (
-    <div className='flex-1 flex flex-col h-full'>
+    <div
+      className={`flex-1 flex flex-col h-full min-h-screen ${
+        !isSidebarOpen ? "flex" : "hidden"
+      }`}>
       {/* header*/}
-      <div className='px-4 py-2 flex-between border-b border-border bg-bg/40'>
+      <div className='px-4 py-3 flex-between border-b border-border bg-bg/40'>
         <div className='flex-center gap-2'>
-          {/* todo: go back function for mobile */}
-          <div className='md:hidden icon-container'>
+          {/* go back for mobile */}
+          <div
+            className='md:hidden icon-container'
+            onClick={() => {
+              setActiveChat(null);
+              toggleSidebar(true);
+            }}>
             <ArrowLeft className='size-6' />
           </div>
 
           <img
             src={`https://eu.ui-avatars.com/api/?name=${contact?.contact}&size=250&background=41b5d8&color=fff`}
             alt='profile image'
-            className='size-12 rounded-full bg-bg-light'
+            className='size-10 rounded-full bg-bg-light md:mr-2'
           />
           <div className='text-sm'>
             <p className='font-semibold'>{contact?.contact || "Unknown"}</p>
