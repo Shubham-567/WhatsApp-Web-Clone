@@ -4,7 +4,7 @@
 
 :root {
   /* Colors */
-  --primary: hsl(194, 66%, 55%);
+  --primary: #41b5d8;
   /* --secondary: hsl(194, 66%, 65%); */
 
   --bg-dark: hsl(217, 34%, 10%);

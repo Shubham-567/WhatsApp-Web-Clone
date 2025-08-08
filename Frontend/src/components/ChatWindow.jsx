@@ -42,12 +42,12 @@ function ChatWindow() {
           </div>
 
           <img
-            src={`https://avatar.iran.liara.run/public?username=${contact?.name}`}
+            src={`https://eu.ui-avatars.com/api/?name=${contact?.contact}&size=250&background=41b5d8&color=fff`}
             alt='profile image'
             className='size-12 rounded-full bg-bg-light'
           />
           <div className='text-sm'>
-            <p className='font-semibold'>{contact?.name || "Unknown"}</p>
+            <p className='font-semibold'>{contact?.contact || "Unknown"}</p>
             <p className='text-sm text-txt-muted'>online</p>
           </div>
         </div>
