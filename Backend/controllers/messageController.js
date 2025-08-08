@@ -44,8 +44,6 @@ export const getAllConversations = async (req, res) => {
 export const getMessageByWaId = async (req, res) => {
   const { wa_id } = req.params;
 
-  //   console.log(wa_id);
-
   try {
     const message = await Message.find({ wa_id }).sort({ timestamp: 1 });
 

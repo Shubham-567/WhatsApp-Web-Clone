@@ -22,5 +22,11 @@ export function formatTimestamp(dateInput) {
     return "Yesterday";
   }
 
-  return d.toLocaleDateString("en-GB"); // dd/mm/yyyy
+  return d
+    .toLocaleDateString("en-GB", {
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    })
+    .toLowerCase(); // dd/mm/yyyy
 }

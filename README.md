@@ -10,6 +10,7 @@ The project has a **Node.js + Express** backend with **MongoDB** for storing mes
 ## 🛠 Tech Stack
 
 **Frontend**
+
 - React
 - Zustand (state management)
 - Axios (API calls)
@@ -17,6 +18,7 @@ The project has a **Node.js + Express** backend with **MongoDB** for storing mes
 - Lucide (icons)
 
 **Backend**
+
 - Node.js
 - Express
 - MongoDB + Mongoose
@@ -42,7 +44,7 @@ Frontend/
 └── src/
     ├── components/   # React UI components
     ├── pages/        # Page-level components
-    ├── services/     # Base API 
+    ├── services/     # Base API
     ├── store/        # Zustand store
     ├── utils/        # Utility functions
     ├── index.css     # Global styles
@@ -132,7 +134,9 @@ node scripts/processPayloads.js
 ```http
 GET /conversations
 ```
+
 Returns a list of chats with:
+
 - contact name
 - last message
 - last sender
@@ -145,6 +149,7 @@ Returns a list of chats with:
 ```http
 GET /messages/:wa_id
 ```
+
 Returns all messages for the given contact.
 
 ---
@@ -160,6 +165,7 @@ Content-Type: application/json
   "name": "You"
 }
 ```
+
 Send a new outgoing message.
 
 ---

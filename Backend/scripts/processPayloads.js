@@ -34,7 +34,7 @@ const processPayloadFile = async (filePath) => {
         status: null,
       };
 
-        console.log("Saving incoming message: ", msgData);
+      console.log("Saving incoming message: ", msgData);
 
       await Message.updateOne(
         { meta_msg_id: message.id },
@@ -54,10 +54,10 @@ const processPayloadFile = async (filePath) => {
         timestamp: new Date(parseInt(status.timestamp) * 1000),
       };
 
-        console.log(
-          `Updating status for msg ID ${status.meta_msg_id}: `,
-          updatedStatus.status
-        );
+      console.log(
+        `Updating status for msg ID ${status.meta_msg_id}: `,
+        updatedStatus.status
+      );
 
       await Message.updateOne(
         { meta_msg_id: status.meta_msg_id },
