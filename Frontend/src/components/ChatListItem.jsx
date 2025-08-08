@@ -12,7 +12,7 @@ function ChatListItem({ chat, onClick, isActive }) {
         alt='profile image'
         className='size-12 rounded-full bg-bg-light'
       />
-      <div className='text-sm space-y-1.5'>
+      <div className='text-sm space-y-1.5 w-full'>
         <p className='font-semibold flex-between'>
           {chat.name}
 

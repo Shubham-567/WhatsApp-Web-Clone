@@ -6,6 +6,8 @@ import { Plus, Search } from "lucide-react";
 function Sidebar() {
   const { chats, activeChat, fetchChats, fetchMessages } = useChatStore();
 
+  // console.log(chats);
+
   useEffect(() => {
     fetchChats();
   }, []);

@@ -1,14 +1,27 @@
 import { ArrowLeft, Paperclip, Phone, Send, Video } from "lucide-react";
 import useChatStore from "../store/chatStore.js";
 import MessageBubble from "./MessageBubble.jsx";
+import { useState } from "react";
 
 function ChatWindow() {
-  const { activeChat, messages, chats } = useChatStore();
+  const { activeChat, messages, chats, sendMessage } = useChatStore();
+  const [text, setText] = useState("");
 
   const contact = chats.find((c) => c._id === activeChat);
 
-  // console.log(contact)
-  // console.log(messages);
+  const handleSend = () => {
+    if (!text.trim()) {
+      return;
+    }
+
+    // console.log(activeChat);
+    // console.log(text);
+
+    sendMessage(activeChat, text);
+    setText("");
+
+    console.log("message sent..");
+  };
 
   if (!activeChat) {
     return (
@@ -23,7 +36,8 @@ function ChatWindow() {
       {/* header*/}
       <div className='px-4 py-2 flex-between border-b border-border bg-bg/40'>
         <div className='flex-center gap-2'>
-          <div className='icon-container'>
+          {/* todo: go back function for mobile */}
+          <div className='md:hidden icon-container'>
             <ArrowLeft className='size-6' />
           </div>
 
@@ -66,13 +80,18 @@ function ChatWindow() {
         <div className='input-box-container w-full my-0'>
           <input
             type='text'
-            placeholder='Search'
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            placeholder='Type a message'
             className='w-full outline-none border-none'
+            onKeyDown={(e) => e.key === "Enter" && handleSend()}
           />
         </div>
 
-        <div className='icon-container'>
-          <Send className='size-6 hover:text-primary' />
+        <div
+          className={`${!text.trim() && "cursor-not-allowed"} icon-container`}
+          onClick={handleSend}>
+          <Send className={`size-6 ${text.trim() && "hover:text-primary"}`} />
         </div>
       </div>
     </div>

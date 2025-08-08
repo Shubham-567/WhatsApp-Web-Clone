@@ -6,7 +6,7 @@ export function formatTimestamp(dateInput) {
 
   if (isSameDay(d, now)) {
     return d
-      .toLocaleDateString("en-US", {
+      .toLocaleTimeString("en-US", {
         hour: "numeric",
         minute: "2-digit",
         hour12: true,

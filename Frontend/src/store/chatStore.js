@@ -38,14 +38,14 @@ const useChatStore = create((set) => ({
     }
 
     try {
-      const res = await API.post(`/messages/${wa_id}/send`, {
+      const res = await API.post(`/message/${wa_id}/send`, {
         text,
         name: "You",
       });
 
       // assuming success and update ui instantly
       set((state) => ({
-        messages: [...state.message, res.data],
+        messages: [...state.messages, res.data],
       }));
     } catch (error) {
       console.error("Failed to send message", error.message);
